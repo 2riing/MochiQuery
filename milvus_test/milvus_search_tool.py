@@ -1,8 +1,13 @@
 from pymilvus import Collection, connections
+import os
+import uuid
 import openai
+import chromadb
+from dotenv import load_dotenv
 
-# ✅ OpenAI API 키 입력
-openai.api_key = ""
+# 🔐 환경변수에서 API 키 로딩
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ✅ Milvus 연결
 connections.connect("default", host="localhost", port="19530")

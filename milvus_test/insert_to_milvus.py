@@ -1,9 +1,15 @@
 import os
 from pymilvus import connections, FieldSchema, CollectionSchema, DataType, Collection, utility
+import os
+import uuid
 import openai
+import chromadb
+from dotenv import load_dotenv
 
-# ✅ 사용자 설정
-openai.api_key = ""
+# 🔐 환경변수에서 API 키 로딩
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 data_dir = r"C:\\Users\\Kunyeol Na\\Desktop\\mochi_query\\data"
 file_to_collection = {
     "s_biz_term_sentences.txt": "biz_term_collection",
@@ -30,7 +36,7 @@ def insert_to_milvus(collection_name, texts):
     fields = [
         FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
         FieldSchema(name="text", dtype=DataType.VARCHAR, max_length=1000),
-        FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=3072),
+        FieldSchema(name="embedding", dtype=r.FLOAT_VECTOR, dim=3072),
     ]
     schema = CollectionSchema(fields, description=f"Collection for {collection_name}")
 

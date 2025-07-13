@@ -6,7 +6,7 @@ import os
 connections.connect("default", host="localhost", port="19530")
 
 # 2. OpenAI 클라이언트 설정 (🔑 API 키 넣어줘)
-openai = OpenAI(api_key="""")
+openai = OpenAI(api_key="")
 
 
 # 3. 컬렉션 이름
